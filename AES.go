@@ -19,9 +19,7 @@ func KeepLogin(strTime string) bool {
 	if err != nil {
 		log.Error(err)
 	}
-	// 将时间戳转换为time.Time类型的值
 	t := time.Unix(int64(stamp), 0)
-	// 格式化时间
 	if time.Now().Sub(t).Seconds() > define.WebKeepLoginSecond {
 		return false
 	} else {

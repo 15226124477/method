@@ -3,6 +3,7 @@ module github.com/15226124477/method
 go 1.22.0
 
 require (
+	github.com/15226124477/define v0.0.0-20240904090259-ef1913ec436a
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.10.0
 	github.com/hpcloud/tail v1.0.0
@@ -10,7 +11,6 @@ require (
 )
 
 require (
-	github.com/15226124477/define v0.0.0-20240904082743-4f6142f465f8 // indirect
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect

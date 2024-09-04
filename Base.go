@@ -39,8 +39,6 @@ func Average(xs []float64) (avg float64) {
 // ListCount 列表计数
 func ListCount(floatList []float64) map[float64]int {
 	hash := make(map[float64]int)
-	// 遍历数组，将每个元素插入map中
-	// 如果元素已经存在，计数器加一；如果不存在，则插入并将计数器置为1
 	for _, item := range floatList {
 		if _, ok := hash[item]; ok {
 			hash[item]++
