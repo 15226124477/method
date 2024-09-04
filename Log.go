@@ -23,8 +23,8 @@ func getCallerInfo(skip int) (info string) {
 	return fmt.Sprintf("FuncName:%s, file:%s, line:%d ", funcName, fileName, lineNo)
 }
 
-// ReturnStruct 打印结构体
-func ReturnStruct(data interface{}) {
+// LogStruct 打印结构体
+func LogStruct(data interface{}) {
 	res, _ := json.MarshalIndent(data, "", "    ")
 	key := getCallerInfo(2)
 	log.Debug(key, "\n", string(res))

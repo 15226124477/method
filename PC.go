@@ -5,7 +5,6 @@ import (
 	log "github.com/sirupsen/logrus"
 	"net"
 	"net/http"
-	"os"
 )
 
 func IsURLAccessible(url string) bool {
@@ -40,20 +39,6 @@ func WorkIP() string {
 		}
 	}
 	return req
-}
-
-func CreatFolders(folders []string) {
-	for i := 0; i < len(folders); i++ {
-		err := os.MkdirAll(folders[i], 0755) // 创建多层文件夹
-		go func() {
-			log.Warning("Watching Folder:", folders[i])
-			Watch(folders[i])
-		}()
-		if err != nil {
-			log.Error(err)
-			return
-		}
-	}
 }
 
 func Watch(folder string) {

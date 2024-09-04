@@ -31,9 +31,7 @@ func KeepLogin(strTime string) bool {
 
 }
 
-// AESEncrypt AES加密函数
 func AESEncrypt(plaintext []byte) (string, error) {
-	// 补充明文，使其长度为块大小的倍数
 	if len(plaintext)%aes.BlockSize != 0 {
 		padding := aes.BlockSize - len(plaintext)%aes.BlockSize
 		plaintext = append(plaintext, bytes.Repeat([]byte{byte(padding)}, padding)...)
