@@ -64,11 +64,10 @@ func PathExists(path string) bool {
 	if err == nil {
 		return true
 	}
-	//is not exist来判断，是不是不存在的错误
-	if os.IsNotExist(err) { //如果返回的错误类型使用os.isNotExist()判断为true，说明文件或者文件夹不存在
+	if os.IsNotExist(err) {
 		return false
 	}
-	return false //如果有错误了，但是不是不存在的错误，所以把这个错误原封不动的返回
+	return false
 }
 
 func Move(from, to string) error {
@@ -144,7 +143,6 @@ func Copy(from, to string) error {
 				log.Error(err)
 			}
 		}(out)
-		// 然后将文件流和文件流对接起来
 		_, e = io.Copy(out, bufReader)
 	}
 	return e
