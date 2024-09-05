@@ -3,8 +3,10 @@ package method
 import (
 	"github.com/fsnotify/fsnotify"
 	log "github.com/sirupsen/logrus"
+	"io"
 	"net"
 	"net/http"
+	"os"
 )
 
 func IsURLAccessible(url string) bool {
@@ -19,6 +21,27 @@ func IsURLAccessible(url string) bool {
 		return true
 	}
 	return false
+}
+
+func HttpDownload(url string, filePath string) {
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Debug("Error downloading file:", err)
+		return
+	}
+	defer resp.Body.Close()
+	outFile, err := os.Create(filePath)
+	if err != nil {
+		log.Debug("Error creating file:", err)
+		return
+	}
+	defer outFile.Close()
+	_, err = io.Copy(outFile, resp.Body)
+	if err != nil {
+		log.Debug("Error saving file:", err)
+		return
+	}
+	log.Info("File downloaded successfully:", filePath)
 }
 
 func WorkIP() string {
