@@ -1,9 +1,11 @@
 module github.com/15226124477/method
 
-go 1.22.0
+go 1.23.0
+
+toolchain go1.23.1
 
 require (
-	github.com/15226124477/define v0.0.0-20240904090259-ef1913ec436a
+	github.com/15226124477/define v0.0.0-20240909025856-c0c000fa0072
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.10.0
 	github.com/hpcloud/tail v1.0.0
