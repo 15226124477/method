@@ -1,7 +1,6 @@
 package method
 
 import (
-	"github.com/fsnotify/fsnotify"
 	log "github.com/sirupsen/logrus"
 	"io"
 	"net"
@@ -62,41 +61,4 @@ func WorkIP() string {
 		}
 	}
 	return req
-}
-
-func Watch(folder string) {
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		log.Error("NewWatcher failed: ", err)
-	}
-	defer func(watcher *fsnotify.Watcher) {
-		err = watcher.Close()
-		if err != nil {
-			log.Error(err)
-		}
-	}(watcher)
-	done := make(chan bool)
-	go func() {
-		defer close(done)
-		for {
-			select {
-			case event, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
-				log.Warning(event.String())
-			case err, ok := <-watcher.Errors:
-				if !ok {
-					return
-				}
-				log.Error("error:", err)
-			}
-		}
-	}()
-
-	err = watcher.Add(folder)
-	if err != nil {
-		log.Fatal("Add failed:", err)
-	}
-	<-done
 }
