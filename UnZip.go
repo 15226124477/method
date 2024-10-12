@@ -141,7 +141,7 @@ func (unzip *UnZipfile) Unzip() {
 	unzip.ZipFileNameList = make([]string, 0)
 	unzip.ZipType = filepath.Ext(unzip.ZipFilePath)
 	Mkdir(unzip.ZipOutputFolder)
-	if unzip.ZipType == ".unzip" {
+	if unzip.ZipType == ".zip" {
 		// 第一步，打开 unzip 文件
 		zipFile, err := zip.OpenReader(unzip.ZipFilePath)
 		if err != nil {
@@ -165,9 +165,10 @@ func (unzip *UnZipfile) Unzip() {
 			filePath := filepath.Join(unzip.ZipOutputFolder, decodeName)
 			unzip.ZipFileNameList = append(unzip.ZipFileNameList, decodeName)
 			if f.FileInfo().IsDir() {
-				// _ = os.MkdirAll(filePath, os.ModePerm)
+				//_ = os.MkdirAll(filePath, os.ModePerm)
 				continue
 			}
+			log.Debug(filePath)
 			// 创建对应文件夹
 			if err := os.MkdirAll(filepath.Dir(filePath), os.ModePerm); err != nil {
 				panic(err)
