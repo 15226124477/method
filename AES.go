@@ -71,15 +71,16 @@ func AESDecrypt(text string) ([]string, int) {
 	if len(result) == 3 {
 		rs := make([]string, 0)
 		for i := 0; i < 3; i++ {
-			re := regexp.MustCompile(`\d+`)
+			re := regexp.MustCompile(`\w+`)
 			// 使用FindAllString方法来查找所有匹配的数字
 			matches := re.FindAllString(result[i], -1)
-			rs = append(rs, matches[0])
+			log.Error(matches)
+			if len(matches) > 0 {
+				rs = append(rs, matches[0])
+			}
 		}
-
 		return rs, len(rs)
 	} else {
 		return result, len(result)
 	}
-
 }
