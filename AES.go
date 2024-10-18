@@ -74,7 +74,7 @@ func AESDecrypt(text string) ([]string, int) {
 			re := regexp.MustCompile(`\w+`)
 			// 使用FindAllString方法来查找所有匹配的数字
 			matches := re.FindAllString(result[i], -1)
-			log.Error(matches)
+			log.Info(matches)
 			if len(matches) > 0 {
 				rs = append(rs, matches[0])
 			}
