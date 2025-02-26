@@ -54,7 +54,10 @@ func WorkIP() string {
 		if pc, ok := address.(*net.IPNet); ok && !pc.IP.IsLoopback() {
 			if pc.IP.To4() != nil {
 				result := pc.IP.String()
-				if result[0:6] == "172.16" {
+				if result[0:6] == "10.100" {
+					req = result
+				}
+				if result[0:7] == "192.168" {
 					req = result
 				}
 			}
